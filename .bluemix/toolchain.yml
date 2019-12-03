@@ -11,8 +11,6 @@ template:
   required:
     - sample-build
     - sample-repo
-    - ccm
-    - analytics
   info:
     # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
     # note: `repository` url param must always be provided while the `branch` url param is optional
