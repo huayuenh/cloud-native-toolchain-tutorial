@@ -42,7 +42,8 @@ services:
         - sample-repo
         - test
       name: 'sample-{{toolchain.name}}'
-      ui-pipeline: true
+      namespace: 'broker-pipelines'
+      pipeline_path: '.'
       configuration:
         content:
           $ref: pipeline.yml
