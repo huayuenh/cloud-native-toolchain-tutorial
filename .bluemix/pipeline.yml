@@ -15,6 +15,7 @@ stages:
         curatedDockerImage: latest
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           # This script just dumps the changes included in this build into a file named changelog.txt
           # This change log can be used later to be included in notifications
           git log ${GIT_COMMIT}..HEAD --graph --oneline > changelog.txt
@@ -25,6 +26,7 @@ stages:
         curatedDockerImage: latest
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           apt-get install -y bzip2
           npm install
           tar -czf node_modules.tar.gz node_modules
@@ -42,6 +44,7 @@ stages:
         curatedDockerImage: latest
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           tar -xzf node_modules.tar.gz
           node ./node_modules/gulp/bin/gulp lint
         enable_tests: true
@@ -51,6 +54,7 @@ stages:
         curatedDockerImage: latest
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           export PATH=/opt/IBM/node-v4.6.0/bin:$PATH
           # Karma Unit Test, output file: test/*.xml
           tar -xzf node_modules.tar.gz
@@ -86,6 +90,7 @@ stages:
           api_key: ${API_KEY}
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           BLUE_APP="$CF_APP-test-blue"
           GREEN_APP="$CF_APP-test-green"
           cf push "${BLUE_APP}" -n "${CF_APP}-test"
@@ -100,6 +105,7 @@ stages:
         curatedDockerImage: latest
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           # This script just dumps the deployment APP_URL, APP_NAME and CF_APP_NAME
           # into a file named deployment.properties that will be used in subsequent stage(s)
           echo "APP_NAME=${APP_NAME}" > deployment.properties
@@ -126,6 +132,7 @@ stages:
         SELECT_CMD: custom
         COMMAND: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           # restore node_modules
           tar -xzf node_modules.tar.gz
           # ensure app is deployed
@@ -162,6 +169,7 @@ stages:
           api_key: ${API_KEY}
         script: |-
           #!/bin/bash
+          export IKS_BETA_VERSION=1.0
           BLUE_APP="$CF_APP-blue"
           GREEN_APP="$CF_APP-green"
           cf push "${BLUE_APP}" -n "${CF_APP}"
